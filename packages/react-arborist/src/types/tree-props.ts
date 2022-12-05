@@ -4,8 +4,9 @@ import * as renderers from "./renderers";
 import { ElementType, MouseEventHandler } from "react";
 import { ListOnScrollProps } from "react-window";
 import { NodeApi } from "../interfaces/node-api";
-import { OpenMap } from "../state/open-slice";
 import { useDragDropManager } from "react-dnd";
+import { OpenMap, OpenSlice } from "../state/open-slice";
+import { Keybinding } from "../interfaces/keybinding";
 
 export interface TreeProps<T> {
   /* Data Options */
@@ -72,6 +73,9 @@ export interface TreeProps<T> {
   /* Extra */
   className?: string | undefined;
   rowClassName?: string | undefined;
+
+  /* Keybinding */
+  keybinding?: Keybinding;
 
   dndRootElement?: globalThis.Node | null;
   onClick?: MouseEventHandler;

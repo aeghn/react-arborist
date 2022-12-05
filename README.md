@@ -320,6 +320,9 @@ interface TreeProps<T> {
   searchTerm?: string;
   searchMatch?: (node: NodeApi<T>, searchTerm: string) => boolean;
 
+  /* Keybinding */
+  keybinding?: Keybinding;
+
   /* Extra */
   className?: string | undefined;
   rowClassName?: string | undefined;
