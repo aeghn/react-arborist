@@ -57,6 +57,24 @@ const FocusPrev: Command = (tree) => {
   tree.focus(tree.prevNode);
 };
 
+const ActivateNext: Command = (tree) => {
+  tree.focus(tree.nextNode);
+  SelectAndActivate(tree);
+};
+
+const ActivatePrev: Command = (tree) => {
+  console.info("prev");
+  console.info(tree.prevNode);
+  tree.focus(tree.prevNode);
+  console.info(tree.prevNode);
+  SelectAndActivate(tree);
+};
+
+const Toggle: Command = (tree) => {
+  const node = tree.focusedNode;
+  node?.toggle();
+}
+
 const Prev: Command = (tree) => {
   const prev = tree.prevNode;
   if (!prev) return;
@@ -166,6 +184,9 @@ export const commands = {
   SelectAndActivate,
   FocusOutsideNext,
   FocusOutsidePrev,
+  ActivateNext,
+  ActivatePrev,
+  Toggle,
   FocusNext,
   FocusPrev,
   FocusFirst,
