@@ -63,17 +63,14 @@ const ActivateNext: Command = (tree) => {
 };
 
 const ActivatePrev: Command = (tree) => {
-  console.info("prev");
-  console.info(tree.prevNode);
   tree.focus(tree.prevNode);
-  console.info(tree.prevNode);
   SelectAndActivate(tree);
 };
 
 const Toggle: Command = (tree) => {
   const node = tree.focusedNode;
   node?.toggle();
-}
+};
 
 const Prev: Command = (tree) => {
   const prev = tree.prevNode;
@@ -147,6 +144,36 @@ const CreateInternal: Command = (tree) => {
   tree.createInternal();
 };
 
+const CreateChild: Command = (tree) => {
+  if (!tree.props.onCreate) return;
+  const focus = tree.focusedNode;
+  if (!focus) return null;
+
+  const parentId = focus.id;
+  const index = null;
+
+  tree.create({
+    parentId: parentId,
+    index: index,
+  });
+};
+
+const CreateSlibing: Command = (tree) => {
+  if (!tree.props.onCreate) return;
+  const focus = tree.focusedNode;
+  if (!focus) return null;
+
+  const parentId =
+    focus.parent && !focus.parent.isRoot ? focus.parent.id : null;
+  const index = (focus.childIndex ?? 0) + 1;
+
+  console.info(`parentId ${parentId}, index ${index}`);
+  tree.create({
+    parentId: parentId,
+    index: index,
+  });
+};
+
 const Rename: Command = (tree) => {
   if (!tree.props.onRename) return;
   setTimeout(() => {
@@ -180,13 +207,15 @@ const PageDown: Command = (tree) => {
 };
 
 export const commands = {
+  ActivateNext,
+  ActivatePrev,
+  Toggle,
+  CreateChild,
+  CreateSlibing,
   Delete,
   SelectAndActivate,
   FocusOutsideNext,
   FocusOutsidePrev,
-  ActivateNext,
-  ActivatePrev,
-  Toggle,
   FocusNext,
   FocusPrev,
   FocusFirst,
