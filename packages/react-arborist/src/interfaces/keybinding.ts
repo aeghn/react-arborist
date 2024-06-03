@@ -31,5 +31,6 @@ export const parseKeybinding = (keybinding: Keybinding): KeysToControl[] =>
   Object.keys(keybinding).reduce((acc, key) => {
     const keys = key.toLowerCase().split(/[ +]/g).filter(filterFalseyToString);
     acc.push([keys, commands[keybinding[key]]]);
+    console.log("==========", acc);
     return acc;
   }, [] as KeysToControl[]);

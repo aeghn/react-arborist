@@ -147,9 +147,8 @@ const CreateInternal: Command = (tree) => {
 const CreateChild: Command = (tree) => {
   if (!tree.props.onCreate) return;
   const focus = tree.focusedNode;
-  if (!focus) return null;
 
-  const parentId = focus.id;
+  const parentId = focus ? focus.id : null;
   const index = null;
 
   tree.create({
